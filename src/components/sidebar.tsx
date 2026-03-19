@@ -45,7 +45,7 @@ const sidebarSections: { title: string; items: NavItem[] }[] = [
   {
     title: "Platform Management",
     items: [
-      { label: "Sub Admin Management", icon: <Shield className="h-4 w-4" />, href: "/dashboard/admin-management" },
+      { label: "Network Management", icon: <Shield className="h-4 w-4" />, href: "/network-management" },
       { label: "User Management", icon: <Users className="h-4 w-4" />, href: "/dashboard/user-management" },
       { label: "Distributor Management", icon: <Truck className="h-4 w-4" />, href: "/dashboard/distributor-management" },
       { label: "Franchise Management", icon: <Store className="h-4 w-4" />, href: "/dashboard/franchise-management" },

@@ -216,18 +216,20 @@ export default function DashboardPage() {
       </div>
 
       <section aria-label="Key metrics" className="space-y-3">
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:gap-4 xl:grid-cols-4">
-          {statCards.map((card) => (
-            <KpiCard
-              key={card.title}
-              title={card.title}
-              value={card.value}
-              trendLabel={card.trend}
-              trendPositive={card.positive}
-              icon={card.icon}
-              accent={card.accent}
-            />
-          ))}
+        <div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:gap-4 xl:grid-cols-4">
+            {statCards.map((card) => (
+              <KpiCard
+                key={card.title}
+                title={card.title}
+                value={card.value}
+                trendLabel={card.trend}
+                trendPositive={card.positive}
+                icon={card.icon}
+                accent={card.accent}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -258,7 +260,7 @@ export default function DashboardPage() {
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 data={revenueData}
-                margin={{ top: 10, right: 12, left: -20, bottom: 0 }}
+                margin={{ top: 10, right: 12, left: 0, bottom: 0 }}
               >
                 <CartesianGrid
                   stroke="#f1d4df"
@@ -392,44 +394,69 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="mt-4 overflow-hidden rounded-2xl border border-gray-100 bg-white/60">
-          <div className="max-sm:-mx-4 max-sm:block max-sm:overflow-x-auto max-sm:px-4">
-            <table className="min-w-full text-left text-xs sm:text-sm">
-              <thead className="border-b border-gray-100 bg-gray-50/60 text-[11px] font-medium uppercase tracking-[0.16em] text-gray-400">
-                <tr>
-                  <th className="px-4 py-3 sm:px-5">Order ID</th>
-                  <th className="px-4 py-3 sm:px-5">Customer</th>
-                  <th className="px-4 py-3 sm:px-5 text-right">Amount</th>
-                  <th className="px-4 py-3 sm:px-5">Status</th>
-                  <th className="px-4 py-3 sm:px-5 text-right">Date</th>
+        {/* Mobile list view */}
+        <div className="mt-4 space-y-3 sm:hidden">
+          {recentOrders.map((order) => (
+            <div
+              key={order.id}
+              className="rounded-xl border border-gray-100 bg-white/80 p-3.5 shadow-sm"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-[12px] font-semibold text-gray-900">
+                  {order.id}
+                </p>
+                <StatusBadge status={order.status} />
+              </div>
+              <p className="mt-1 truncate text-[12px] text-gray-700">
+                {order.customer}
+              </p>
+              <div className="mt-2 flex items-center justify-between text-[11px] text-gray-500">
+                <span>{order.date}</span>
+                <span className="font-semibold text-gray-900">
+                  {order.amount}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop/tablet table view */}
+        <div className="mt-4 hidden overflow-hidden rounded-2xl border border-gray-100 bg-white/60 sm:block">
+          <table className="min-w-full text-left text-xs sm:text-sm">
+            <thead className="border-b border-gray-100 bg-gray-50/60 text-[11px] font-medium uppercase tracking-[0.16em] text-gray-400">
+              <tr>
+                <th className="px-4 py-3 sm:px-5">Order ID</th>
+                <th className="px-4 py-3 sm:px-5">Customer</th>
+                <th className="px-4 py-3 sm:px-5 text-right">Amount</th>
+                <th className="px-4 py-3 sm:px-5">Status</th>
+                <th className="px-4 py-3 sm:px-5 text-right">Date</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100/80">
+              {recentOrders.map((order) => (
+                <tr
+                  key={order.id}
+                  className="align-middle hover:bg-pink-50/40"
+                >
+                  <td className="whitespace-nowrap px-4 py-3 text-[12px] font-semibold text-gray-900 sm:px-5 sm:text-sm">
+                    {order.id}
+                  </td>
+                  <td className="max-w-[180px] truncate px-4 py-3 text-[12px] text-gray-700 sm:max-w-xs sm:px-5 sm:text-sm">
+                    {order.customer}
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right text-[12px] font-semibold text-gray-900 sm:px-5 sm:text-sm">
+                    {order.amount}
+                  </td>
+                  <td className="px-4 py-3 sm:px-5">
+                    <StatusBadge status={order.status} />
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right text-[11px] text-gray-500 sm:px-5 sm:text-xs">
+                    {order.date}
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100/80">
-                {recentOrders.map((order) => (
-                  <tr
-                    key={order.id}
-                    className="align-middle hover:bg-pink-50/40"
-                  >
-                    <td className="whitespace-nowrap px-4 py-3 text-[12px] font-semibold text-gray-900 sm:px-5 sm:text-sm">
-                      {order.id}
-                    </td>
-                    <td className="max-w-[180px] truncate px-4 py-3 text-[12px] text-gray-700 sm:max-w-xs sm:px-5 sm:text-sm">
-                      {order.customer}
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right text-[12px] font-semibold text-gray-900 sm:px-5 sm:text-sm">
-                      {order.amount}
-                    </td>
-                    <td className="px-4 py-3 sm:px-5">
-                      <StatusBadge status={order.status} />
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right text-[11px] text-gray-500 sm:px-5 sm:text-xs">
-                      {order.date}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
     </div>
