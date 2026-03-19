@@ -35,7 +35,7 @@ export function Topbar() {
               Dashboard
             </p>
             <p className="truncate text-sm font-semibold text-gray-800">
-              Secure Pharma Master Admin Overview
+              Secure Pharma Distributor Admin Overview
             </p>
           </div>
         </div>
@@ -69,7 +69,7 @@ export function Topbar() {
                   </AvatarFallback>
                 </Avatar>
                 <div className="hidden text-xs md:block">
-                  <p className="font-semibold text-gray-800">Master Admin</p>
+                  <p className="font-semibold text-gray-800">Distributor Admin</p>
                   <p className="text-[11px] text-gray-500">
                     truebeauty@admin.com
                   </p>

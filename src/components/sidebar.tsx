@@ -248,7 +248,7 @@ export function Sidebar({ onOpenChange }: SidebarProps) {
             >
               <div className="relative h-10 w-40 sm:h-11 sm:w-44 md:h-12 md:w-52 lg:h-14 lg:w-60">
                 <Image
-                  src="/images/logo.png"
+                  src="/image/logo.png"
                   alt="Secure Pharma Organics & Food Industries"
                   fill
                   className="object-contain"
@@ -267,7 +267,7 @@ export function Sidebar({ onOpenChange }: SidebarProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-pink-50 text-gray-900 shadow-sm hover:bg-pink-100"
+              className="ml-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-pink-50 text-gray-900 shadow-sm hover:bg-pink-100"
               onClick={() => setIsCollapsed((v) => !v)}
             >
               <span className="sr-only">Toggle sidebar</span>
@@ -316,7 +316,7 @@ export function Sidebar({ onOpenChange }: SidebarProps) {
               >
                 <div className="relative h-10 w-40">
                   <Image
-                    src="/images/logo.png"
+                    src="/image/logo.png"
                     alt="Secure Pharma Organics & Food Industries"
                     fill
                     className="object-contain"
